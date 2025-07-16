@@ -3,38 +3,40 @@
 ### Contributing
 
 ```mermaid
-classDiagram
-    %% === ENTITIES ===
-    class Repo {
-        +repo_id
-        +repo_name
-        +visibility
-        +default_branch
-    }
 
-    class Branch {
-        +branch_id
-        +branch_name
-        +is_default
-        +protection_rules*
-    }
+flowchart LR
+    %% ───── Branches (subgraphs make swim-lanes) ─────
+    subgraph FEATURE_BRANCH ["feature/*"]
+        direction TB
+        F1["commit<br/>`feature: add-widget`"]
+        F2["commit<br/>`feature: update-api`"]
+    end
 
-    class Commit {
-        +commit_hash
-        +author
-        +timestamp
-        +message
-    }
+    subgraph SECURITY_BRANCH ["security/*"]
+        direction TB
+        S1["commit<br/>`security: patch-CVE`"]
+    end
 
-    class Tag {
-        +tag_name
-        +tag_id
-        +tag_type   %% lightweight | annotated
-        +created_at
-    }
+    subgraph FIX_BRANCH ["fix/*"]
+        direction TB
+        X1["commit<br/>`fix: null-ptr`"]
+    end
 
-    %% === RELATIONSHIPS ===
-    Repo   *--  "0..*" Branch  : contains
-    Branch *--  "0..*" Commit  : history
-    Commit o--  "0..*" Tag     : tagged_by
+    subgraph RELEASE_BRANCH ["release"]
+        direction TB
+        R0["merge&nbsp;feature/*&nbsp;+&nbsp;fix/*"]
+        R1["commit<br/>`release: bump-version`"]
+    end
+
+    subgraph MASTER_BRANCH ["master (prod)"]
+        direction TB
+        M1["deploy tag<br/>`v1.2.0`"]
+    end
+
+    %% ───── Flows ─────
+    F2  -- PR -->  R0
+    S1  -- PR -->  X1
+    X1  -- PR -->  R0
+    R1  -- merge --> M1
+
 ```
