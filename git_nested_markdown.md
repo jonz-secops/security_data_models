@@ -1,0 +1,271 @@
+# Datamodel: Git
+
+## gitaudit
+
+### repo
+
+- branch
+	- branch_name
+	- branch_id
+	- branch_description
+	- branch_owner
+	- policy
+		- protection
+			- create_branch
+			- delete_branch
+- repo_name
+- repo_id
+- membership
+	- member_name
+	- member_id
+	- member_type
+	- member_permission
+- repo_owner
+- policy
+	- features
+		- feature_name
+		- status
+	- visibility
+	- default_branch
+	- protection
+		- clone
+		- fork
+		- fetch
+		- commit
+		- push
+		- pull
+			- create_pull
+			- close_pull
+			- reopen_pull
+			- comment
+			- review
+			- merge_pull
+		- mirror
+		- tag
+		- release
+	- ip_license
+	- security_policy
+	- data_management
+		- max_data_sensitivity
+		- min_data_sensitivity
+		- data_owner
+- license
+
+### organization
+
+- org_name
+- org_id
+- policy
+	- protection
+	- features
+	- data_management
+		- max_data_sensitivity
+		- min_data_sensitivity
+		- data_owner
+- license
+- membership
+	- member_name
+	- member_id
+	- member_type
+	- member_permission
+- org_owner
+
+### identity
+
+- token
+	- token_name
+	- token_id
+	- token_type
+	- token_scopes
+	- token_description
+	- token_owner
+	- created_at
+	- expired_at
+	- last_used_at
+	- status
+- user
+	- user_name
+	- user_id
+	- user_email
+	- user_idp_name
+	- user_idp_id
+	- auth_method
+	- keys
+		- key_name
+		- key_id
+		- key_type
+		- key_description
+		- created_at
+		- expired_at
+		- status
+		- last_used_at
+	- license
+	- visibility
+	- user_groups
+	- status
+- group
+	- family
+		- parent
+		- child
+	- group_name
+	- group_id
+	- group_type
+	- description
+	- visibility
+	- membership
+		- member_name
+		- member_id
+		- added_at
+		- added_by
+		- removed_at
+		- removed_by
+	- status
+- role
+	- family
+		- parent
+		- child
+	- role_name
+	- role_id
+	- role_scope
+	- membership
+		- member_name
+		- member_id
+		- added_at
+		- added_by
+		- removed_at
+		- removed_by
+	- description
+	- status
+- identity_platform
+	- idp_name
+	- idp_id
+	- idp_type
+	- idp_url
+	- status
+	- policy
+		- protection
+
+### integration
+
+- integration_name
+- integration_id
+- integration_type
+- integration_scope
+- integration_purpose
+- integration_owner
+
+### security
+
+- audit
+	- timestamp
+	- event_name
+	- event_id
+	- event_description
+	- actor
+		- actor_name
+		- actor_id
+		- actor_ipv4
+		- actor_ipv6
+		- actor_type
+		- actor_signature
+		- actor_platform
+	- target
+		- target_name
+		- target_type
+		- target_id
+	- event_status
+	- event_result
+- risk_management
+	- risk_owner
+	- risks
+		- risk_name
+		- risk_id
+		- risk_type
+		- status
+- threat_management
+	- threat_owner
+	- threats
+		- threat_name
+		- threat_id
+		- threat_type
+		- status
+
+## gitops
+
+### local
+
+- history
+	- reset_id
+	- reset_type
+	- before_hash
+	- after_hash
+	- impacted_commits
+	- actor
+		- actor_name
+		- actor_id
+		- actor_signature
+- rebase
+- commit
+	- commit_id
+	- commit_hash
+	- commit_message
+	- actor
+		- actor_name
+		- actor_id
+		- actor_signature
+	- timestamp
+	- branch
+
+### remote
+
+- push
+	- push_id
+	- push_type
+	- remote_url
+	- actor
+		- actor_name
+		- actor_id
+		- actor_signature
+	- commit_hashes
+	- branch
+- pull
+	- pull_id
+	- pull_type
+	- remote_url
+	- actor
+		- actor_name
+		- actor_id
+	- commit_hashes
+	- branch
+
+### orchestration
+
+- runner
+	- repo_name
+	- branch_name
+	- runner_name
+	- runner_id
+	- runner_type
+	- runner_description
+- workflow
+	- repo_name
+	- branch_name
+	- trigger_id
+	- workflow_name
+	- workflow_id
+	- workflow_description
+	- repo_id
+	- branch_name
+	- branch_id
+	- trigger_name
+	- trigger_type
+	- status
+	- result
+	- started_at
+	- completed_at
+	- environment
+	- action
+		- action_name
+		- action_id
+		- action_type
+		- action_description
