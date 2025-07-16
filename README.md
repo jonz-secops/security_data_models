@@ -25,3 +25,6 @@ Working on data models for security data. For technical understanding and also f
 ### ./docs
 
 ### ./scripts
+
+<!-- not used yet [![Build Status](#https://github.com/username/repo/workflows/CI/badge.svg)](https://github.com/username/repo/actions) -->
+[![License](https://img.shields.io/badge/license-MIT-blue.svg)](LICENSE)
