@@ -17,6 +17,11 @@ flowchart LR
         S1["commit<br/>`security: patch-CVE`"]
     end
 
+    subgraph BUG_BRANCH ["bug/*"]
+        direction TB
+        B1["commit<br/>`bug: fix-crash`"]
+    end
+
     subgraph FIX_BRANCH ["fix/*"]
         direction TB
         X1["commit<br/>`fix: null-ptr`"]
@@ -36,6 +41,7 @@ flowchart LR
     %% ───── Flows ─────
     F2  -- PR -->  R0
     S1  -- PR -->  X1
+    B1  -- PR -->  X1
     X1  -- PR -->  R0
     R1  -- merge --> M1
 
